@@ -1,0 +1,40 @@
+{
+    "S":{
+        "searchTitle":"搜尋",
+    
+        "categoryList":{
+            "accuracy":"精準度",
+            "date":"出版日期",
+            "price":"價錢",
+            "popularity":"暢銷度"
+        },
+        "from_method":{
+            "title":{
+                "from":"FROM",
+                "method":"METHOD",
+                "book":"BOOK"
+            },
+            "options":{
+                "from":{
+                    "books":"Books",
+                    "sanmin":"SANMIN",
+                    "pchome":"PChome",
+                    "kingstone":"Kingstone"
+                },
+                "method":{
+                    "title":"TITLE",
+                    "isbn":"ISBN",
+                    "author":"AUTHOR",
+                    "publish":"PUBLISHING",
+                    "pubdate":"PUBDATE"
+                },
+                "book":{
+                    "book":"BOOK",
+                    "ebook":"E-BOOK"
+                }
+            },
+            "price":"Price",
+            "popularity":"Popularity"
+        }
+    }
+}

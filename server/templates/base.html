@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/materialize.min.css' %}"
+    />
+
+    <title>A . T . B Books</title>
+
+    <style>
+      .modal-trigger {
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% if alert %}
+    <script>
+      alert("{{alert}}");
+    </script>
+    {% endif %} {% comment %}
+    <!-- <header style="position: sticky;top: 0;z-index: 999;">
+    <ul id="dropdown1" class="dropdown-content" style="min-width: auto;">
+      <li><a href="#!">Englih</a></li>
+      <li><a href="#!">繁體中文</a></li>
+    </ul>
+
+    {% if not isUser %}
+    <div id="SignIn" class="modal person-info" style="top: 30%;overflow-y:none">
+      <div class="modal-content">
+        <span class="card-title grey-text text-darken-4">
+          <h3>Sign In<i class="modal-close material-icons right">close</i></h3>
+        </span>
+        <div class="row">
+          <form action="{% url 'signIn' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="account" type="text" class="validate" name="account" value="Rayy">
+                <label for="account">Account</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate" name="password" value="username">
+                <label for="password">Password</label>
+              </div>
+
+              
+            
+            </div>
+            <div class="modal-footer">
+              <a onclick='signUp()' class="btn-flat" style="float: left;" >Sign Up</a>
+
+              <input type="submit" class="btn-flat" value="Sign In" style="background-color: gainsboro;"></input>
+              
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Colse</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <nav style="background-color: white;">
+      <div class="container nav-wrapper">
+        <a href="#!" class="brand-logo" style="color: black;">A . T . B Books</a>
+        <ul class="right hide-on-med-and-down">
+
+          <li>
+            <a class="dropdown-trigger" href="#!" data-target="dropdown1" style="color: black;">
+              <i class="material-icons left">language</i>語言</a>
+            </li>
+          <li>
+            <a class="modal-trigger" href="{% if isUser %} /user/ {% else %}#SignIn{% endif %}">
+              <i class="material-icons left">person</i>{{ name }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header> -->
+    {% endcomment %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <main style="width: 90%; margin: 0 auto">
+      <div class="nav-wrapper" style="width: 80%; margin: 0 auto">
+        <!-- <form action="#" method="GET"> -->
+        <form action="/search/" method="GET">
+          <div class="input-field" style="color: black">
+            <i class="material-icons prefix">search</i>
+            <input
+              type="text"
+              id="autocomplete-input"
+              class="autocomplete"
+              name="key"
+            />
+            <label for="autocomplete-input">ISBN or Name</label>
+          </div>
+        </form>
+      </div>
+
+      9789863125501<br />
+      JAVA<br />
+      PYTHON<br />
+      <button onclick="searchh()">test</button>
+      <p id="word"></p>
+
+      <form action="{% url 'signOut' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Out" />
+      </form>
+      {% block main %} {% endblock main %}
+
+      <!-- loading -->
+      <!-- <div class="progress">
+        <div class="indeterminate"></div>
+      </div> -->
+      <p id="AsiaContent">Asia Search</p>
+
+      <button id="asd" onclick="Test()">Asia</button>
+      <script>
+        function Test() {
+          var request = $.ajax({
+            url: "/search/AsiaBook/",
+            method: "GET",
+            data: { key: "9789863125501" },
+            dataType: "JSON",
+          });
+          request.done(function (data) {
+            alert("yes");
+            DATA = data["AsiaSearch"];
+            var str = Array(DATA.length);
+            for (var i = 0; i < DATA.length; i++) {
+              str[i] =
+                "<p>" +
+                DATA[i][0] +
+                "</p>" +
+                "<p>" +
+                DATA[i][1] +
+                "</p>" +
+                "<p>" +
+                DATA[i][2] +
+                "</p>" +
+                "<p>" +
+                DATA[i][3] +
+                "</p>" +
+                "<p>" +
+                DATA[i][4] +
+                "</p>" +
+                "<p>" +
+                DATA[i][5] +
+                "</p><br>";
+            }
+            $("#AsiaContent").html(str[0] + str[1]);
+          });
+          request.fail(function (jqXHR, textStatus) {
+            alert("NO");
+          });
+        }
+      </script>
+    </main>
+
+    <!-- <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2020 Copyright ATB。Team
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer> -->
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+
+    <!-- <script src="../static/js/test.js"></script> -->
+    <script>
+      $(document).ready(function () {
+        $(".person-info").modal();
+        $(".dropdown-trigger").dropdown();
+      });
+      // function searchh() {
+      //   var request = $.ajax({
+      //     url: "/",
+      //     method: "GET",
+      //     data: { test: 'dfd' },
+      //     dataType: "JSON",
+
+      //   });
+      //   request.done(function (data) {
+      //     for (var i in data) {
+      //       str = "<br>" + data[i]['src'] + "<br>" + data[i]['name'] + "<br>" + data[i]['isbn'] + "<br>" + data[i]['price'] + "<br>";
+      //       //   document.getElementById('word').innerText="<br>" + data[i]['name'] + "<br>"
+      //       $('#word').append(str);
+      //     }
+      //   });
+      //   request.fail(function (jqXHR, textStatus) {
+      //     alert('NO');
+
+      //     document.getElementById("word").innerText = "抱歉，伺服器目前出錯，請稍後...";
+      // });
+      // }
+    </script>
+  </body>
+</html>

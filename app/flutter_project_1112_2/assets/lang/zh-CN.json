@@ -1,0 +1,42 @@
+{
+    "S":{
+        "searchTitle":"搜寻",
+        "selectStore":{},
+        "selectMethod":{"all":"All", "title":"Title", "auth":"", "publish":"", "":""},
+    
+        "categoryList":{
+            "accuracy":"精准度",
+            "date":"出版日期",
+            "price":"价钱",
+            "popularity":"畅销度"
+        },
+        "from_method":{
+            "title":{
+                "from":"FROM",
+                "method":"METHOD",
+                "book":"BOOK"
+            },
+            "options":{
+                "from":{
+                    "books":"Books",
+                    "sanmin":"SANMIN",
+                    "pchome":"PChome",
+                    "kingstone":"Kingstone"
+                },
+                "method":{
+                    "title":"TITLE",
+                    "isbn":"ISBN",
+                    "author":"AUTHOR",
+                    "publish":"PUBLISHING",
+                    "pubdate":"PUBDATE"
+                },
+                "book":{
+                    "book":"BOOK",
+                    "ebook":"E-BOOK"
+                }
+            },
+            "price":"Price",
+            "popularity":"Popularity"
+        }
+    }
+}

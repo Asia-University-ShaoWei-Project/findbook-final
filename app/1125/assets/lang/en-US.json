@@ -1,0 +1,51 @@
+{
+    "H":{},
+    "S":{
+        "searchTitle":"Search",
+    
+        "categoryList":{
+            "accuracy":"Accuracy",
+            "date":"PubDate",
+            "price":"Price",
+            "popularity":"Popularity"
+        },
+
+        "from_method":{
+            "title":{
+                "from":"FROM",
+                "method":"METHOD",
+                "book":"BOOK"
+            },
+            "options":{
+                "from":{
+                    "books":"Books",
+                    "sanmin":"SANMIN",
+                    "pchome":"PChome",
+                    "kingstone":"Kingstone"
+                },
+                "method":{
+                    "title":"TITLE",
+                    "isbn":"ISBN",
+                    "author":"AUTHOR",
+                    "publish":"PUBLISHING",
+                    "pubdate":"PUBDATE"
+                },
+                "book":{
+                    "book":"BOOK",
+                    "ebook":"E-BOOK"
+                }
+            },
+            "price":"Price",
+            "popularity":"Popularity"
+        },
+
+
+
+        "msg_mixed":"{} THis is  {lang} language",
+        "gender":{
+            "male":"Hi man ;) {}",
+            "female":"Hello girl :) {}",
+            "other":"Hello {}"
+        }
+    }
+}

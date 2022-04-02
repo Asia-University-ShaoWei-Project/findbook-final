@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.min.css' %}">
+
+  <title>A . T . B Books</title>
+
+  <style>
+    /* .modal-trigger {
+      color: black;
+    } */
+    p{
+      padding: 10px 0;
+    }
+    .d_btns p{
+      cursor: pointer;
+      transition: 0.5s;
+    }
+    .d_btns p:hover{
+      color: rgb(230, 175, 103);
+      font-size: 18px;
+    }
+
+  </style>
+</head>
+
+<body>
+  {% if alert %}
+  <script>alert('{{alert}}');</script>
+  {% endif %}
+  <header style="position: sticky;top: 0;z-index: 999;">
+    <!-- <ul id="dropdown1" class="dropdown-content" style="min-width: auto;">
+      <li><a href="#!">Englih</a></li>
+      <li><a href="#!">繁體中文</a></li>
+    </ul> -->
+    <nav style="background-color: white;">
+      <div class="container nav-wrapper">
+        <a href="#!" class="brand-logo" style="color: black;">A . T . B Books</a>
+        <ul class="right hide-on-med-and-down">
+
+          <!-- <li>
+            <a class="dropdown-trigger" href="#!" data-target="dropdown1" style="color: black;">
+              <i class="material-icons left">language</i>語言</a>
+            </li>
+          <li> -->
+            <a class="modal-trigger" href="{% if isUser %} /user/ {% else %}#SignIn{% endif %}">
+              <i class="material-icons left">person</i>{{ name }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+  <main style="width: 90%;margin: 10px auto;">
+    
+
+
+    <div class="row">
+      <div class="col s3" style="position: sticky;">
+          <div class="d_btns" style="display: flex;flex-direction: column;margin: 15px auto;">
+              <p><i class="material-icons left">account_box</i> Account</p>
+              <p><i class="material-icons left">favorite</i>  Favorite</p>
+              <p><i class="material-icons left">settings</i>  Setting</p>
+              <p><i class="material-icons left">edit</i>  Edit Password</p>
+              <p><i class="material-icons left">undo</i>  Sign Out</p>
+
+
+            </div>
+      </div>
+      <div class="col s9">
+        <div class="card" style="width: 95%;margin: 5% auto; padding: 10%;">
+          <div style="width: 95%; margin: 5% auto;">
+
+            {% block main %}
+
+
+            {% endblock %}
+            
+
+
+            
+        
+
+
+
+
+            <a href="../account/profile">profile</a>
+        
+            <a href="../account/password">changePassword</a>
+
+
+            <form action="{% url 'signOut' %}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="Out">
+            </form>
+
+
+
+          </div> 
+        </div>
+      </div>   
+    </div>
+
+    
+    
+
+    <!-- loading -->
+    <!-- <div class="progress">
+        <div class="indeterminate"></div>
+      </div> -->
+
+  </main>
+
+  <!-- <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2020 Copyright ATB。Team
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer> -->
+
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="{% static 'js/materialize.min.js' %}"></script>
+
+  <!-- <script src="../static/js/test.js"></script> -->
+  <script>
+    
+    $(document).ready(function () {
+      $('.person-info').modal();
+      $('.dropdown-trigger').dropdown();
+
+
+    });
+
+  </script>
+</body>
+
+</html>

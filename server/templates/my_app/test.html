@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-image">
+            <img style="width: 200px;" src="https://cf-assets2.tenlong.com.tw/products/images/{{ src }}">
+            <span class="card-title">{{ date }}</span>
+            <a class="btn-floating halfway-fab waves-effect waves-light black"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+            <p>Name: {{ name }}</p>
+            <p>Price: {{ price }}</p>
+            <p>Isbn: {{ isbn }}</p>
+        </div>
+    </div>
+</div>
+
+
+
+{%  endblock content %}
+
+
+
+{% for i in go%}
+{{i}}
+{% endfor %}

@@ -1,0 +1,16 @@
+<h1>test2</h1>
+    {% for i in data %}
+    {{i.isbn}}
+    {{i.name}}
+    {{i.price}}
+    {{i.img_url}}
+
+    <br>
+    {% endfor %}
+
+
+    {% if  pages.0 != 1 %}
+            <li class="waves-effect"><a href="/top/{{ pages.0 - 1 }}/"><i class="material-icons">chevron_left</i></a></li>
+        {% else %}
+            <li class="disabled"><a href="/top/1/"><i class="material-icons">chevron_left</i></a></li>
+        {% endif %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="row">
+    <div class="col s8">
+      <div class="card">
+        <div class="card-image">
+          <img style="width: 80%;" src="https://cf-{{ src }}">
+          <span class="card-title">{{ ten.date }}</span>
+          <a class="btn-floating halfway-fab waves-effect waves-light black"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+            <p>Name: {{ tenlong.title }}</p>
+            <p>Price: {{ tenlong.price }}</p>
+            <p>Isbn: {{ tenlong.isbn }}</p>
+            <p>author: {{ tenlong.author }}</p>
+            <p>publisher: {{ tenlong.publisher }}</p>
+            <p>date: {{ tenlong.date }}</p>
+            <p>content: {{ tenlong.content }}</p>
+            <p>price: {{ price }}</p>
+
+
+
+            {% comment%}
+            <!-- <h5>Asia</h5>
+            {% for items in asia %}
+            
+              <p>索引 = {{ items.0.0 }} , {{items.1.0}}</p>
+              <p>所在位置 = {{ asia.0.1}} , {{items.1.1}}</p>
+              <p>館藏狀態 = {{ asia.1.1}} , {{items.1.1}}</p>
+              <p>有無附件 = {{ asia.0.1}} , {{items.1.1}}</p>
+              <p>預約人數 = {{ asia.0.1}} , {{items.1.1}}</p>
+              <p>類別( = {{ asia.0.1}} , {{items.1.1}}</p>
+              <p>所在位置 = {{ items.0 }}</p>
+              <p>館藏狀態 ={{ items.1 }}</p>
+              <p>有無附件 ={{ items.2 }}</p>
+              <p>預約人數 ={{ items.3 }}</p>
+              <p>類別 ={{ items.4 }}</p> -->
+
+
+            
+            <!-- {% endfor %} -->
+            {% endcomment%}
+
+            
+
+
+
+        </div>
+      </div>
+
+      
+
+
+    </div>
+  </div>
+  
+   
+
+{%  endblock main %}

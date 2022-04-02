@@ -1,0 +1,11 @@
+.user-div-img{
+    width: 120px;
+    height: 120px;
+    background-color: rgba(240, 240, 240, 0.8);
+    margin: 0 auto;
+    line-height: 120px;
+    padding: 10px;
+}
+.user-div-img img{
+    width: 120px;
+}

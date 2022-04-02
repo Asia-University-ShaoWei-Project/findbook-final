@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    # db:
+    #     image: postgres
+    #     volumes:
+    #         - db:${DB_INIT_PATH}
+    #     environment:
+    #         - POSTGRES_DB=${DB_DATABASE}
+    #         - POSTGRES_USER=${DB_USER}
+    #         - POSTGRES_PASSWORD=username${DB_PASSWORD}
+    server:
+        build: .
+        volumes:
+            - server:/server
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db

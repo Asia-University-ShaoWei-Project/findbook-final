@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% block main %}
+<style>
+    .items_collect{
+        cursor: pointer;
+        
+    }
+    i.left{
+        margin-left: 1px;
+    }
+</style>
+<h1>serch</h1>
+
+
+<!-- <div class="fixed-action-btn">
+    <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+</div> -->
+
+<!-- <div class="tap-target" data-target="menu">
+    <div class="tap-target-content">
+    <h5>Title</h5>
+    <p>A bunch of text</p>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col s3" style="position: sticky; top: 30%;">
+        <form style="display: table;margin: 0 auto;" action="#">
+            <p>
+              <label>
+                <input type="checkbox" />
+                <span>Red</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" checked="checked" />
+                <span>Yellow</span>
+              </label>
+            </p>
+          </form>
+    </div>
+
+    <div class="col s9">
+        <div style="text-align: center;">
+            <ul class="pagination" style="display: inline-block;">
+                
+                {% if  pages.0.0 >= 1 %}
+                    <li class="waves-effect"><a href="/top/{{ pages.0.0 }}/"><i class="material-icons">chevron_left</i></a></li>
+                {% else %}
+                    <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+                {% endif %}
+                
+                {% for i in pages.1 %}
+                    {% if i != pages.0.1 %}
+                    <li class="waves-effect"><a href="/top/{{ i }}/">{{ i }}</a></li>
+                    {% else %}
+                    <li class="active"><a href="/top/{{ i }}/">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+
+                {% if  pages.0.2 <= pages.1|length %}
+                    <li class="waves-effect"><a href="/top/{{ pages.0.2 }}/"><i class="material-icons">chevron_right</i></a></li>
+                {% else %}
+                    <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="items" style="margin: 10px auto;">
+            <div class="row">
+                {% if books %}
+                    {% for item in books %}
+                    <div class="col s12 m6 l3" style="position: relative;">
+                        <div class="card" style="padding: 10px;">
+                            <div class="card-image waves-effect waves-block waves-light" style="width: 150px;height: 200px;">
+                                <img class="activator" src=" " style="width: 90%;margin: 0 auto;">
+                                <!-- <img class="activator materialboxed" src="https://cf- item.img_url " style="width: 90%;margin: 0 auto;"> -->
+                            </div>
+                            <span class="items_collect" style="position: absolute;right: 0;top:0;margin: 5px;">
+                                <i class="material-icons left" style="font-size: 40px;">turned_in_not</i>
+                            </span>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">
+                                    {{item.price}}
+                                    <i class="material-icons left">attach_money</i>
+                                    <i class="material-icons right">more_vert</i></span>
+                                <p>
+                                    <a onclick="more('{{ item.isbn }}')">more</a>
+                                </p>
+                                
+
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">
+                                    A . T . B
+                                    <i class="material-icons right">close</i></span>
+                                <h5>NAME :</h5>
+                                <p class="itemsName">{{item.name}}</p>
+                                <h5>ISBN :</h5>
+                                <p class="itemsIsbn">{{item.isbn}}</p>
+                                <h5>PRICE :</h5>
+                                <p>{{item.price}} (天瓏) </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        <div style="text-align: center;">
+            <ul class="pagination" style="display: inline-block;">
+                {% if  pages.0.0 >= 1 %}
+                    <li class="waves-effect"><a href="/top/{{ pages.0.0 }}/"><i class="material-icons">chevron_left</i></a></li>
+                {% else %}
+                    <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+                {% endif %}
+                
+                {% for i in pages.1 %}
+                    {% if i != pages.0.1 %}
+                    <li class="waves-effect"><a href="/top/{{ i }}/">{{ i }}</a></li>
+                    {% else %}
+                    <li class="active"><a href="/top/{{ i }}/">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+
+                {% if  pages.0.2 <= pages.1|length %}
+                    <li class="waves-effect"><a href="/top/{{ pages.0.2 }}/"><i class="material-icons">chevron_right</i></a></li>
+                {% else %}
+                    <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+        
+    </div>
+
+  </div>
+<span style="display: inline-block;">
+    
+</span>
+<div style="display: inline-block;">
+    
+</div>
+
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+
+<script>
+    let collect_btn = document.getElementsByClassName('items_collect');
+    // let items_name = document.getElementsByClassName('itemsName');
+    let items_isbn = document.getElementsByClassName('itemsIsbn');
+    // $.ajaxSetup({
+    //         data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    //     });
+    function collect(index){
+        let isbn = items_isbn[index].textContent;
+        alert('進入function-> '+index+'\n'+name+'$$'+isbn);
+        
+        var request = $.ajax({
+            url: "{% url 'collect' %}",
+            method: "GET",
+            data: { 
+                'class':'default', 
+                'isbn': isbn },
+            
+        });
+        request.done(function (data) {
+            let req = JSON.parse(data)
+            alert(req);
+            alert(req['request']);
+
+            if (req['request'] === '1'){
+                alert("成功")
+            }else{
+                alert("失敗")
+            };
+        });
+        request.fail(function (jqXHR, textStatus) {
+            alert("失敗");
+        });
+        
+    }
+    for(var i =0; i < collect_btn.length; i++) {
+        let index=i
+        collect_btn[index].addEventListener('click', function(){
+            collect(index);
+        });
+    }
+    $(document).ready(function(){
+      $('.tap-target').tapTarget();
+    });
+       
+        
+    
+</script>
+
+
+
+{%  endblock main %}
