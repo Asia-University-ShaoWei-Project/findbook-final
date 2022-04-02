@@ -1,65 +1,75 @@
-from http.client import HTTPResponse
-from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse, Http404, HttpResponseNotFound, JsonResponse
+import msg
+from models import Collect
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.shortcuts import render, redirect
 
-from django.contrib import auth
-# from django.shortcuts import render
-# from .models import Top
+
+profile_page = 'auth/profile.html'
+login_page = 'auth/login.html'
 
 
-def initMessenger(request):
-  return JsonResponse(
-      {
-          'available_school': ['ccu', 'asia', 'chiayi', 'yzu', 'nccu']
-      }
+def Login(req):
+  if req.user.is_authenticated:
+    return redirect(profile_page)
+  if req.method == 'POST':
+    email = req.POST['email']
+    password = req.POST['password']
+    auth = authenticate(req, email=email, password=password)
+    if auth and auth.is_active:
+      login(req, auth)
+      return redirect(profile_page)
+  return render(req, login_page, {"msg": msg.Err_Login})
+
+
+@login_required
+def Logout(req):
+  logout(req)
+  return redirect('/')
+
+
+def Register(req):
+  if req.user.is_authenticated:
+    return redirect('/auth/profile')
+  if req.method == 'POST':
+    email = req.POST['email']
+    password = req.POST['password']
+    username = req.POST['username']
+    if check_req_variable_isEmpty(email, password, username):
+      return render(req, login_page, {"msg": msg.Err_Arg})
+    if check_email_exist(email):
+      return render(req, login_page, {"msg": msg.Msg_Email_Is_Exist})
+    if create_user(email, password, username):
+      return render(req, login_page, {"msg": msg.Msg_Create_Account_Success})
+  return render(req, login_page)
+
+
+def check_req_variable_isEmpty(*keys) -> bool:
+  isEmpty = False
+  for i in keys:
+    if len(i) == 0:
+      isEmpty = True
+      break
+  return isEmpty
+
+
+def check_email_exist(email) -> bool:
+  # TODO: DB check email exist
+  # User.objects.get(username=account) # from signup check
+  check_valid = True
+  return check_valid
+
+
+def create_user(email, password, username) -> bool:
+  valid = True
+  # TODO: condition the success of create and collect
+  User.objects.create_user(
+      email=email,
+      password=password,
+      username=username,
   )
-
-
-def UserInfomation(request, message):
-  return {
-      'message': message,
-      'userName': request.user.username,
-      'isUser': request.user.is_authenticated,
-  }
-
-
-def index(request):
-  return render(request, "index.html", {"test": "test_message"})
-  # return HttpResponse("test")
-  print('------------進入 index------------')
-  # if request.method != 'POST':
-  # print(request.path)
-  # print(request.get_host())
-  # print(request.get_full_path())
-  # print(request.is_secure())
-
-  if not request.user.is_authenticated:
-    print('未登入者')
-    return render(request, 'index.html', UserInfomation(request, '你尚未登入'))
-  else:
-    print('是登入者')
-    return render(request, 'index.html', UserInfomation(request, '以登入'))
-# def top(request, q_page):
-#     print('------------進入 top------------')
-#     # page = request.GET.get('q_page')
-#     if q_page!=None:
-#         page = q_page
-#     else:
-#         print('is none')
-#     if Top.objects.all():
-#         filters = Top.objects.filter(page=page)
-#         if filters:
-#             pages = [
-#                 [page-1,page,page+1],
-#                 list(range(1, int(Top.objects.order_by('-page')[0].page)+1))
-#                 ]
-#             return render(request, 'Search/top.html',{'books':filters,'pages':pages})
-#         else:
-#             return render(request, '404.html')
-#     else:
-#         return render(request, 'serverError.html')
-
-
-#     #是否已登入的人
-#     if not request.user.is_authenticated():
-#         return HttpResponseRedirect('/login/?next=%s' % request.path)
+  Collect(email_id=email).save()
+  return valid

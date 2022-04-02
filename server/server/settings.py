@@ -20,13 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # TODO: temporary
 SECRET_KEY = "django-insecure-k)-hvpkegd0w)efgj63r!9^l==a52$@yagig@5(=d7^lmc6&u!"
+SECRET_KEY = environ.get("DJANGO_SECRET_KEY"),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-# TODO: temporary
-# ALLOWED_HOSTS = ['192.168.43.233','192.168.43.224', '127.0.0.1', 'localhost', '172.18.48.1']
 
 # Application definition
 
@@ -37,18 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # TODO restful api
-    # 'rest_framework',
-    # 'api_test',
-    # TODO new app
-    # 'authentication'
-    # TODO: FindBook setting.py
+    'auth'
+    'search'
+    # TODO: old setting.py
     # 'django_user_agents',
-    # 'polls',
-    # 'searchBook',
-    # 'users',
-    # 'test_tmp',
-    # 'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # TODO: FindBook setting
+    # TODO: old setting
     # 'django_user_agents.middleware.UserAgentMiddleware',
 ]
 

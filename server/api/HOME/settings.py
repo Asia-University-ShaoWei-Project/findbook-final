@@ -25,7 +25,7 @@ SECRET_KEY = 'leg$y&!07e2^q9ef==w3^mj6^h4ei#fn-r+dpi2zrk_=o7gr)!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "192.168.43.159", "192.168.43.233",]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -181,8 +181,3 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-# facebook
-
-# SOCIAL_AUTH_FACEBOOK_KEY = '312184833177448'
-# SOCIAL_AUTH_FACEBOOK_SECRET = 'f9adf685d98c1a15903c95abaad6bb70'

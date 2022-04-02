@@ -14,4 +14,3 @@ urlpatterns = [
     path('user/', include('loginAPI.urls')),
     path('book/', include('books.urls')),
 ]
-# 39289150472a87435599ec604a0c6c4ecafa1dde

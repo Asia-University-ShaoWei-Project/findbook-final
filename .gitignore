@@ -2,3 +2,6 @@
 migrations/
 __pycache__/
 tmp/
+*.7z
+*.zip
+note.md
