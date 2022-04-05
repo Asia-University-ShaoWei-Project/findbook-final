@@ -2,29 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:dio/dio.dart';
-
 import 'package:myFirst/models/search_model.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-// import 'package:like_button/like_button.dart';
-
 import 'package:myFirst/screens/search/indexLoaing.dart';
 
-// ignore: must_be_immutable
 class ItemList extends StatelessWidget {
-  // static const List durations = [50, 100, 150, 200, 250]; // animation seconds
-  // final controller;
   int tmpINT = 0;
   bool hideTopBtnBool = true;
   ScrollController _scrollController;
-  final Map _tileTitle = {
-    "title": "書名",
-    "date": "日期",
-    "price": "價格",
-    "author": "作者",
-    "pub": "出版社"
-  };
+  String domain="localhost";
+  final Map _tileTitle = {"title": "書名", "date": "日期","price": "價格","author": "作者","pub": "出版社"};
   final List<Widget> _dailogContentWidget = [
     Divider(height: 2, thickness: 1),
     SizedBox(height: 10)
@@ -36,8 +24,6 @@ class ItemList extends StatelessWidget {
           boxShadow: [BoxShadow()],
         ),
         margin: EdgeInsets.symmetric(horizontal: 5),
-        // height: 24,
-        // width: 24,
         child: Image.asset('assets/images/bookStore/books.png')),
     'sanmin': Container(
         decoration: BoxDecoration(
@@ -45,8 +31,6 @@ class ItemList extends StatelessWidget {
           boxShadow: [BoxShadow()],
         ),
         margin: EdgeInsets.symmetric(horizontal: 5),
-        // height: 24,
-        // width: 24,
         child: Image.asset('assets/images/bookStore/sanmin.png')),
     'eslite': Container(
         decoration: BoxDecoration(
@@ -54,8 +38,6 @@ class ItemList extends StatelessWidget {
           boxShadow: [BoxShadow()],
         ),
         margin: EdgeInsets.symmetric(horizontal: 5),
-        // height: 24,
-        // width: 24,
         child: Image.asset('assets/images/bookStore/eslite.png')),
     'kingstone': Container(
         decoration: BoxDecoration(
@@ -63,18 +45,11 @@ class ItemList extends StatelessWidget {
           boxShadow: [BoxShadow()],
         ),
         margin: EdgeInsets.symmetric(horizontal: 5),
-        // height: 24,
-        // width: 24,
         child: Image.asset('assets/images/bookStore/kingstone.png'))
   };
-  // ItemList({this.controller});
-
   @override
   Widget build(BuildContext context) {
-    // final searchNotify = Provider.of<SearchModel>(context);
     _scrollController = ScrollController();
-    print('build itemList');
-
     return Selector<SearchModel, List>(
         selector: (context, searchModel) => searchModel.data,
         builder: (context, data, child) => data.isNotEmpty
@@ -91,15 +66,10 @@ class ItemList extends StatelessWidget {
                       builder: (context, dataProcess, child) {
                         Future<Map> doSearchItem() async {
                           var dio = Dio();
-                          print('next page');
-                          print("http://192.168.43.224:8000/s/items/?page=${searchSort['page']}&key=${searchSort['title']}&store=${searchSort['from']}&sort=${searchSort['sort']}&method=${searchSort['method']}&type=${searchSort['type']}");
                           Map resoult = {'statusCode': null, 'data': null};
                           final response = await dio
                               .get(
-                                "http://192.168.43.224:8000/s/items/?page=${searchSort['page']}&key=${searchSort['title']}&store=${searchSort['from']}&sort=${searchSort['sort']}&method=${searchSort['method']}&type=${searchSort['type']}",
-                                // "http://210.70.80.111/106021095/json/kingstoneMult.json",
-                                // "http://210.70.80.111/106021095/json/items1123.json",
-                                // queryParameters: {"id": 12, "name": "wendu"}
+                                "http://${domain}/search/items/?page=${searchSort['page']}&key=${searchSort['title']}&store=${searchSort['from']}&sort=${searchSort['sort']}&method=${searchSort['method']}&type=${searchSort['type']}",
                               )
                               .timeout(const Duration(seconds: 10));
                           resoult['statusCode'] = response.statusCode;
@@ -107,7 +77,6 @@ class ItemList extends StatelessWidget {
                             dataProcess(response.data);
                           return resoult;
                         }
-
                         return Selector<SearchModel, bool>(
                           selector: (context, searchModel) =>
                               searchModel.nextRequestBool,
@@ -127,35 +96,17 @@ class ItemList extends StatelessWidget {
                                 onNotification: (scrollNoti) {
                                     if (hideTopButtonBool &&
                                         scrollNoti.metrics.extentBefore > 250) {
-                                      print('1');
                                       topBtnEvent(hide: false);
                                     } else if (!hideTopButtonBool &&
                                         scrollNoti.metrics.extentBefore < 251) {
-                                      print('2');
-
                                       topBtnEvent(hide: true);
                                     }
                                     if (scrollNoti.metrics.extentAfter < 150 &&
                                         nextRequestBool) {
-                                      print('3');
-
                                       nextRequestBool = false;
                                       searchSort['page']+=1;
-                                      
-                                      print('go search');
                                       doSearchItem();
                                     }
-                                    // double progress = notification.metrics.pixels /
-                                    //     notification.metrics.maxScrollExtent;
-                                    // print("${notification.metrics.extentAfter<150}");
-                                    // print(notification.metrics.maxScrollExtent)        ;
-                                    //重新构建
-                                    // setState(() {
-                                    //   _progress = "${(progress * 100).toInt()}%";
-                                    // });
-                                    // print(
-                                    //     "BottomEdge: ${notification.metrics.extentAfter == 0}");
-                                    //return true; //放开此行注释后，进度条将失效
                                 },
                                 child: Stack(
                                     children: [
@@ -225,8 +176,6 @@ class ItemList extends StatelessWidget {
       onLongPress: () =>
           showBookInfoDialog(context, exist: existList, jsonData: jsonData),
       onTap: () {
-        // searchNotify.myTag = jsonData["index"];
-        // searchNotify.myText = jsonData["title"];
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -239,7 +188,6 @@ class ItemList extends StatelessWidget {
           ),
         ),
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Expanded(
@@ -250,11 +198,9 @@ class ItemList extends StatelessWidget {
                 child: CachedNetworkImage(
                   height: 90,
                   imageUrl:
-                      // "https://cdn.kingstone.com.tw/book/images/product/${jsonData["img"]}",
                       jsonData['imgURL'] ?? '',
                   placeholder: (BuildContext context, String url) =>
                       const Center(
-                    // child: CircularProgressIndicator(),
                     child: Icon(
                       Icons.photo_size_select_actual,
                       color: Colors.grey,
@@ -269,7 +215,6 @@ class ItemList extends StatelessWidget {
                   )),
                   fadeOutDuration: const Duration(seconds: 1),
                   fadeInDuration: const Duration(seconds: 2),
-                  // placeholder: ,
                 ),
               ),
             ),
@@ -324,14 +269,8 @@ class ItemList extends StatelessWidget {
           ],
         ),
       ),
-      // )
     );
   }
-
-  // scrollToTop() {
-
-  // }
-
   void showBookInfoDialog(BuildContext context,
           {List exist, dynamic jsonData}) =>
       showDialog(
@@ -348,7 +287,6 @@ class ItemList extends StatelessWidget {
                     title:
                         Text(v, style: Theme.of(context).textTheme.headline2)));
             });
-            // jsonData.forEach((k, v)=>print("key: $k, value: $v"));
             return SimpleDialog(
                 titlePadding: EdgeInsets.only(top: 32),
                 title: Center(child: Text("詳細資訊")),
@@ -362,14 +300,4 @@ class ItemList extends StatelessWidget {
                   ...content
                 ]);
           });
-  // Future<bool> onLikeButtonTapped(bool isLiked) async {
-  //   /// send your request here
-  //   // final bool success= await sendRequest();
-
-  //   /// if failed, you can do nothing
-  //   // return success? !isLiked:isLiked;
-
-  //   return !isLiked;
-  // }
-
 }

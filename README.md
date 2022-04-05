@@ -1,11 +1,13 @@
-# Find Book in Online Store
+# Find Books
 
 - Backend
   - Framework: Django
+  - DB: sqlite3
   - Feature
     - Search book
     - Compare price with online book story
 - APP
+  - Framework: Flutter
   - Home page
     ![app-home](./doc/home.jpeg)
   - Search page
@@ -14,4 +16,3 @@
     ![app-product](./doc/product.jpg)
   - Mode page
     ![app-mode-white](./doc/mode-white.jpeg)
-    ![app-mode-dark](./doc/mode-dark.jpeg)

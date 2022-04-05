@@ -52,8 +52,6 @@ class _BookImgPreviewState extends State<BookImgPreview> {
                             ),
                           ))
                       .toList(),
-                
-
           );
         },
       ),

@@ -101,10 +101,7 @@ Future fetchAlbum(String value) async {
 
   final response = await dio
       .get(
-        // "http://192.168.43.159:8000/s/test/",
-        // "http://210.70.80.111/106021095/myjson.json", // school url get json
-        "http://210.70.80.111/106021095/json/kingstoneMult.json",
-        // queryParameters: {"id": 12, "name": "wendu"}
+        "http:/localhost/json/kingstoneMult.json",
       )
       .timeout(const Duration(seconds: 10));
   if (response.statusCode == 200) {

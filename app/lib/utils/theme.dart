@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-ThemeData basicTheme(bool seleTheme) {
+ThemeData basicTheme(bool white_mode) {
   // final ThemeData base = ThemeData.light();
   final ThemeData base = ThemeData();
-  int myTheme = seleTheme ? 1 : 0; // 0:light, 1: dark
+  int theme_sele = white_mode ? 1 : 0;
   // Map<String, List<Color>> colors = {
 
   // };
@@ -26,7 +26,7 @@ ThemeData basicTheme(bool seleTheme) {
 
   print('return base.copyWith');
   Color selectColor(String value) {
-    String result = '0xFF' + value.split(',')[myTheme];
+    String result = '0xFF' + value.split(',')[theme_sele];
     return Color(int.parse(result));
   }
 
@@ -50,13 +50,13 @@ ThemeData basicTheme(bool seleTheme) {
         color: selectColor('212121,d6d6d6'),
         size: 14.0,
       ),
-      // shadowColor: [Color(0xFF), Color(0xFF)][myTheme],
+      // shadowColor: [Color(0xFF), Color(0xFF)][theme_sele],
     ),
     // textTheme: _basicTextTheme(base.textTheme),
     // textTheme: Typography().white,
     indicatorColor: selectColor('807A6B,3e2335'),
     // selectColor('FFFFFF,616161'),
-    // indicatorColor: colors['indicatorColor'][myTheme],
+    // indicatorColor: colors['indicatorColor'][theme_sele],
     scaffoldBackgroundColor: selectColor('f5f5f5,424242'),
     // primaryColor: selectColor('FFFFFF,303030'),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

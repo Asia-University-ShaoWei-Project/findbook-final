@@ -15,7 +15,7 @@ class IndexLoading extends StatelessWidget {
   // Future init(context) async {
   //   print('開始請求資料');
   //   final response =
-  //       await http.get('http://210.70.80.111/106021095/index.json');
+  //       await http.get('http://localhost/index.json');
   //   if (response.statusCode == 200) {
   //     final resData = convert.jsonDecode(response.body);
   //     print('HTTP 請求完成');
@@ -40,11 +40,10 @@ class IndexLoading extends StatelessWidget {
     final searchModelNotify = Provider.of<SearchModel>(context, listen: false);
     Future.delayed(Duration(milliseconds: 500), () async {
       final response =
-          // await http.get('http://210.70.80.111/106021095/json/index.json');
-          await http.get('http://192.168.43.224:8000/s/product/?store=${searchModelNotify.searchSort['from']}&index=$bookIndex');
+          // await http.get('http://localhost/json/index.json');
+          await http.get('http://localhost/s/product/?store=${searchModelNotify.searchSort['from']}&index=$bookIndex');
       if (response.statusCode == 200) {
         final resData = convert.jsonDecode(response.body);
-        print('HTTP 請求完成');
         if (resData["status"]) {
           Navigator.pushReplacement(
               context,

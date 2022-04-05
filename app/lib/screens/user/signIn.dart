@@ -197,9 +197,9 @@ class Profile extends StatelessWidget {
 
 //   final response = await dio
 //       .post(
-//           // "http://192.168.43.159:8000/s/test/",
-//           // "http://192.168.43.159:8000/user/${url[value]}/", // school url get json
-//           "http://192.168.43.159:8000/api/isUser/", // school url get json
+//           // "http://localhost/s/test/",
+//           // "http://localhost/user/${url[value]}/", // school url get json
+//           "http://localhost/api/isUser/", // school url get json
 //           data: token
 //           // queryParameters: {"id": 12, "name": "wendu"}
 //           )

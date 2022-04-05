@@ -352,14 +352,14 @@ class SearchField extends StatelessWidget {
 
 Future doSearchItem(Map searchSort) async {
   print(
-      "http://192.168.43.224:8000/s/items/?page=${searchSort['page']}&key=${searchSort['title']}&store=${searchSort['from']}&sort=${searchSort['sort']}&method=${searchSort['method']}&type=${searchSort['type']}");
+      "http://localhost/s/items/?page=${searchSort['page']}&key=${searchSort['title']}&store=${searchSort['from']}&sort=${searchSort['sort']}&method=${searchSort['method']}&type=${searchSort['type']}");
   var dio = Dio();
   Map resoult = {'statusCode': null, 'data': null};
   final response = await dio
       .get(
-        // "http://210.70.80.111/106021095/json/kingstoneMult.json",
-        // "http://210.70.80.111/106021095/json/items1123.json",
-        "http://192.168.43.224:8000/s/items/?page=${searchSort['page']}&key=${searchSort['title']}&store=${searchSort['from']}&sort=${searchSort['sort']}&method=${searchSort['method']}&type=${searchSort['type']}",
+        // "http://localhost/json/kingstoneMult.json",
+        // "http://localhost/json/items1123.json",
+        "http://localhost/s/items/?page=${searchSort['page']}&key=${searchSort['title']}&store=${searchSort['from']}&sort=${searchSort['sort']}&method=${searchSort['method']}&type=${searchSort['type']}",
         // queryParameters: {"id": 12, "name": "wendu"}
       )
       .timeout(const Duration(seconds: 10));

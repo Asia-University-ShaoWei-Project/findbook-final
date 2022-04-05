@@ -16,7 +16,7 @@ import 'dart:convert';
 
 BaseOptions baseOptions = new BaseOptions(
     baseUrl: "http://210.70.80.111/",
-    // baseUrl: "http://192.168.43.159:8000/",
+    // baseUrl: "http://localhost/",
     connectTimeout: 5000,
     receiveTimeout: 3000,
 );

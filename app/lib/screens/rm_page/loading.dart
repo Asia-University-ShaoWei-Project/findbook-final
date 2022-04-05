@@ -24,7 +24,6 @@ class Loading extends StatelessWidget {
     notifier = Provider.of<SelfModel>(context, listen: false);
 
     Future init() async{
-      // 等待此函式才能繼續
       try {
         // change the status bar color to material color [green-400]
         await FlutterStatusbarcolor.setStatusBarColor(Colors.white);
@@ -69,7 +68,6 @@ class Loading extends StatelessWidget {
         // print("value : $value");
         
       } catch (e) {
-        print('!!!!!!!!!!!LOADING ERROR!!!!!!!!!!!');
         print(e);
       }
       await Future.delayed(Duration(seconds: 2),()=> print("delay..."));

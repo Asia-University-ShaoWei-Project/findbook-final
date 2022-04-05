@@ -122,11 +122,6 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
         padding: const EdgeInsets.all(8.0),
         children: <Widget>[
 
-
-
-
-
-
           _OpenContainerWrapper(
             transitionType: _transitionType,
             closedBuilder: (BuildContext _, VoidCallback openContainer) {
@@ -134,21 +129,6 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
             },
             onClosed: _showMarkedAsDoneSnackbar,
           ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           const SizedBox(height: 16.0),
 

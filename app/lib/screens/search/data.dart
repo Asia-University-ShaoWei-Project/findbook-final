@@ -15,7 +15,7 @@ final List<String> title = [
   tr("S.from_method.title.from"),
   tr("S.from_method.title.method"),
   tr("S.from_method.title.book")
-]; // 標題文字(FROM METHOD)
+];
 
 
 
@@ -30,16 +30,13 @@ final Map a = {
   "BOOKS": storeIcon("books"),
   "SANMIN": storeIcon("sanmin"),
 
-  // "TITLE": SvgPicture.asset("assets/images/SVG/SP/title.svg"),
   "TITLE": Icon(Icons.title),
   "ISBN": SvgPicture.asset("assets/images/SVG/SP/isbn.svg"),
   "AUTHOR": SvgPicture.asset("assets/images/SVG/SP/author.svg"),
   "PUBLISH": SvgPicture.asset("assets/images/SVG/SP/publish.svg"),
 
-
   "BOOK": SvgPicture.asset("assets/images/SVG/SP/book.svg"),
   "EBOOK": SvgPicture.asset("assets/images/SVG/SP/ebook.svg"),
-    // "":storeIcon("books"),
   };
 
 
