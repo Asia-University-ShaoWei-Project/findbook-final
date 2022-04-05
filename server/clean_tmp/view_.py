@@ -16,15 +16,3 @@ def getHtml(url):
     print('error')
 
 
-def getCollege(request):
-  from .models import UniversityName
-  content = eval(UniversityName.objects.get(id=1).content)
-  return JsonResponse(content)
-
-
-def fix(request):
-  return render(request, 'fix.html', {'alert': request.user.username})
-
-
-def collect(request):
-  return render(request, 'User/collect.html', {'isUser': True})

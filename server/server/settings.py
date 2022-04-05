@@ -7,7 +7,6 @@ For the full list of settings and their values, see https://docs.djangoproject.c
 """
 
 from pathlib import Path
-from os import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +19,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # TODO: temporary
 SECRET_KEY = "django-insecure-k)-hvpkegd0w)efgj63r!9^l==a52$@yagig@5(=d7^lmc6&u!"
-SECRET_KEY = environ.get("DJANGO_SECRET_KEY"),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

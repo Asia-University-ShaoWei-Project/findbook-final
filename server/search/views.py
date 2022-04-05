@@ -268,10 +268,3 @@ def searchBooks(request, key, service=None):
   #         ]
   #     }
   # )
-def checkTmp(request):
-  from .models import StoreAttr
-  url = StoreAttr.objects.get(id=1).url
-  print(url)
-  url = url.format(isbn="this is isbn", title="this title")
-  print(url)
-  return JsonResponse({'url': url})

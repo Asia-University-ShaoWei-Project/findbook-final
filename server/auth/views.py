@@ -73,3 +73,14 @@ def create_user(email, password, username) -> bool:
   )
   Collect(email_id=email).save()
   return valid
+# todo
+
+
+def getCollege(request):
+  from .models import UniversityName
+  content = eval(UniversityName.objects.get(id=1).content)
+  return JsonResponse(content)
+
+
+def collect(request):
+  return render(request, 'User/collect.html', {'isUser': True})

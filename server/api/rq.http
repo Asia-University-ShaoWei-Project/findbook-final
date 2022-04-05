@@ -2,14 +2,14 @@
 
 ###
 
-GET http://192.168.43.159:8000/api/myCollect/
+GET http://localhost/api/myCollect/
 Content-Type: application/x-www-form-urlencoded
 Authorization: Token 03d678e54abd3fae0ac512294a85a9e19e6c8444
 
 
 
 ###
-PUT http://192.168.43.159:8000/api/myCollect/
+PUT http://localhost/api/myCollect/
 Content-Type: application/x-www-form-urlencoded
 Authorization: Token 03d678e54abd3fae0ac512294a85a9e19e6c8444
 
